@@ -18,7 +18,7 @@ services:
       - ./data:/app/data
       - ./logs:/app/logs
 
-  traefik:
+  traefik1:
     image: traefik:v2.2
     ports:
       - "80:80"
