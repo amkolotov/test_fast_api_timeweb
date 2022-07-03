@@ -5,21 +5,21 @@ networks:
         external: true
 
 services:
-  web:
+  web1:
     build: .
     command: python run.py
     restart: unless-stopped
     expose:
-      - 5000
+      - 5001
     env_file:
       - .env
     networks:
       - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.fastapi1.rule=Host(`fastapi1.test-kanal.site`)"
-      - "traefik.http.routers.fastapi1.tls=true"
-      - "traefik.http.routers.fastapi1.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.fastapi2.rule=Host(`fastapi2.test-kanal.site`)"
+      - "traefik.http.routers.fastapi2.tls=true"
+      - "traefik.http.routers.fastapi2.tls.certresolver=letsencrypt"
     volumes:
       - ./data:/app/data
       - ./logs:/app/logs
