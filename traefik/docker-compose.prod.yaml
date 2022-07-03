@@ -1,5 +1,9 @@
 version: "3.3"
 
+networks:
+    traefik:
+        external: true
+
 services:
   traefik:
     image: traefik:v2.2
