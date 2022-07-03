@@ -1,0 +1,16 @@
+FROM python:3.10
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app1
+
+ENV WORKDIR=/app1
+
+WORKDIR $WORKDIR
+RUN mkdir data
+RUN mkdir logs
+
+COPY requirements.txt $WORKDIR
+RUN pip install -r requirements.txt
+
+COPY . $WORKDIR

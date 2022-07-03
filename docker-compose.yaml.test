@@ -1,0 +1,26 @@
+version: "3.3"
+
+services:
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - api
+    volumes:
+      - ./nginx.conf.template:/etc/nginx/templates/nginx.conf.template
+      - ./data/certs:/etc/certs
+    env_file:
+      - .env
+
+  api:
+    build: .
+    command: python bin/run.py
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs

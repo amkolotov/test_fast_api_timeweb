@@ -1,0 +1,26 @@
+version: "3.3"
+
+services:
+  web:
+    build: .
+    command: python run.py
+    restart: unless-stopped
+    expose:
+      - 5000
+    env_file:
+      - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fastapi.rule=Host(`fastapi.localhost`)"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+
+  traefik:
+    image: traefik:v2.2
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik.dev.toml:/etc/traefik/traefik.toml"
