@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  web:
+    build: .
+    command: python run.py
+    restart: unless-stopped
+    expose:
+      - 5000
+    env_file:
+      - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fastapi.rule=Host(`fastapi.test-kanal.ru`)"
+      - "traefik.http.routers.fastapi.tls=true"
+      - "traefik.http.routers.fastapi.tls.certresolver=letsencrypt"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
