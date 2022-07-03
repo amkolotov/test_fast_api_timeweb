@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  web:
+  web1:
     build: .
     command: python run.py
     restart: unless-stopped
