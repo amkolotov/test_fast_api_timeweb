@@ -11,9 +11,9 @@ services:
       - .env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.fastapi.rule=Host(`fastapi.test-kanal.ru`)"
-      - "traefik.http.routers.fastapi.tls=true"
-      - "traefik.http.routers.fastapi.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.fastapi2.rule=Host(`fastapi2.test-kanal.ru`)"
+      - "traefik.http.routers.fastapi2.tls=true"
+      - "traefik.http.routers.fastapi2.tls.certresolver=letsencrypt"
     volumes:
       - ./data:/app/data
       - ./logs:/app/logs
